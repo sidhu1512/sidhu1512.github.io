@@ -1,14 +1,32 @@
-# Portfolio Responsive Complete
-## [Watch it on youtube](https://youtu.be/AKNvTxWOdKw)
-### Portfolio Responsive Complete
+# Siddharth Bhadu - Personal Portfolio Website
 
-- Responsive Personal Portfolio Website HTML CSS & JavaScript.
-- Contains animations when scrolling.
-- Smooth scrolling in each section.
-- Developed first with the Mobile First methodology, then for desktop.
-- Compatible with all mobile devices and with a beautiful and pleasant user interface.
+This is the repository for my personal portfolio website, designed to showcase my skills, projects, and professional experience as a Software Engineer.
 
-💙 Join the channel to see more videos like this. [Bedimcode](https://www.youtube.com/@Bedimcode)
+## ✨ [View the Live Site Here](https://sidhu1512.github.io) ✨
+
+---
+
+### Key Features
+
+- **Fully Responsive Design:** Looks great on all devices, from mobile phones to desktops.
+- **Interactive Sections:** Dedicated sections for my professional background, skills, and work samples.
+- **Smooth Navigation:** Clean animations and smooth-scrolling links for a pleasant user experience.
+- **Functional Contact Form:** Includes a working contact form powered by EmailJS to handle inquiries directly.
+
+---
+
+### Technologies Used
+
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **BoxIcons & RemixIcon** for the icons.
+- **ScrollReveal.js** for the scroll animations.
+
+---
+
+### Website Preview
 
 ![preview img](/preview.png)
+
 
