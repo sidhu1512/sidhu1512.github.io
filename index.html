@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddharth Bhadu - Portfolio</title>
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- ICON LIBRARIES -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+</head>
+
+<body>
+
+    <!-- ===== CUSTOM CURSOR ELEMENTS ===== -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">Siddharth</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+        <!-- ===== HOME SECTION ===== -->
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title">
+                    <br><br><span class="home__title-line">Hi,</span><br>
+                    <span class="home__title-line">I'am <span class="home__title-color">Siddharth Bhadu</span></span><br>
+                    <span class="home__title-line">Software Engineer</span>
+                </h1>
+                <a href="assets/file/sidcv.pdf" class="button" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+
+            <div class="home__social">
+                <a href="https://www.linkedin.com/in/siddharth-bhadu-71a483193" class="home__social-icon" target="_blank" rel="noopener noreferrer"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/sidhu1512" class="home__social-icon" target="_blank" rel="noopener noreferrer"><i class="bx bxl-github"></i></a>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT SECTION ===== -->
+        <section class="about section" id="about">
+            <h2 class="section-title">About</h2><br><br>
+            <div class="about__container bd-grid">
+                <div class="about__img">
+                    <img src="assets/img/coader.gif" width="100%" alt="Animated GIF of a person coding on a laptop">
+                </div>
+                <div class="about__text-content">
+                    <h2 class="about__subtitle" id="about-subtitle"></h2>
+                    <p class="about__text" id="about-text"></p>
+                </div>
+            </div><br><br><br>
+        </section>
+
+        <!-- ===== SKILLS SECTION ===== -->
+        <section class="skills section" id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills__container bd-grid">
+                <div>
+                    <h2 class="skills__subtitle">Profesional Skills</h2>
+                    <p class="skills__text">Here are some of the key technologies I use to build robust and efficient applications.</p>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-java skills__icon'></i>
+                            <span class="skills__name">JAVA</span>
+                        </div>
+                        <div class="skills__names">
+                            <i class='bx bxs-leaf skills__icon'></i>
+                            <span class="skills__name">SPRING BOOT</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bx-code-alt skills__icon'></i>
+                            <span class="skills__name">REST APIs</span>
+                        </div>
+                        <div class="skills__names">
+                            <i class='bx bxl-python skills__icon'></i>
+                            <span class="skills__name">PYTHON</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-javascript skills__icon'></i>
+                            <span class="skills__name">JAVASCRIPT</span>
+                        </div>
+                        <div class="skills__names">
+                            <i class='bx bxl-html5 skills__icon'></i>
+                            <span class="skills__name">HTML/CSS</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxs-data skills__icon'></i>
+                            <span class="skills__name">MYSQL</span>
+                        </div>
+                        <div class="skills__names">
+                            <i class='bx bxl-git skills__icon'></i>
+                            <span class="skills__name">GIT</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="assets/img/work3.jpg" alt="Laptop on a desk displaying lines of code" class="skills__img">
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WORK SECTION ===== -->
+        <section class="work section" id="work">
+            <h2 class="section-title">Work</h2>
+            <div class="work__container bd-grid">
+                <a href="https://github.com/sidhu1512/sidhu1512.github.io" class="work__img" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/work1.jpg" alt="Screenshot of portfolio project">
+                    <div class="work__data">
+                        <h3 class="work__title">Portfolio Website</h3>
+                        <p class="work__description">A personal portfolio built with HTML, CSS, and JS to showcase skills and projects.</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/recipe-assistant" class="work__img" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/work2.jpg" alt="Screenshot of Recipe Assistant project">
+                    <div class="work__data">
+                        <h3 class="work__title">Recipe Assistant</h3>
+                        <p class="work__description">A backend app using Java & Spring Boot to manage and share cooking recipes.</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/ollama-chatbot" class="work__img" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/work3.jpg" alt="Screenshot of Ollama Chatbot project">
+                    <div class="work__data">
+                        <h3 class="work__title">Ollama Chatbot</h3>
+                        <p class="work__description">A conversational AI chatbot leveraging the Ollama platform for local LLM interaction.</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/eshopping-zone-case-study" class="work__img" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/work4.jpg" alt="Screenshot of E-Shopping Zone project">
+                    <div class="work__data">
+                        <h3 class="work__title">E-Shopping Zone</h3>
+                        <p class="work__description">A case study and backend system for an e-commerce platform, built with Java.</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/demo-blog" class="work__img" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/work5.jpg" alt="Screenshot of Demo Blog project">
+                    <div class="work__data">
+                        <h3 class="work__title">Demo Blog</h3>
+                        <p class="work__description">A full-stack blog application demonstrating CRUD operations with Spring Boot.</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/chip-8" class="work__img" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/work6.jpg" alt="Screenshot of Chip-8 Emulator project">
+                    <div class="work__data">
+                        <h3 class="work__title">CHIP-8 Emulator</h3>
+                        <p class="work__description">An emulator for the CHIP-8 virtual machine, written in Java, to play retro games.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT SECTION ===== -->
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact__container bd-grid">
+                <form id="contact-form" class="contact__form">
+                    <input type="hidden" name="title" value="Portfolio Inquiry">
+                    <input type="text" name="name" placeholder="Name" class="contact__input" required>
+                    <input type="email" name="email" placeholder="Email" class="contact__input" required>
+                    <textarea name="message" placeholder="Your Message" cols="0" rows="10" class="contact__input" required></textarea>
+                    <input type="submit" value="Send" class="contact__button button">
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+
+        <div id="footer-animation-container">
+            <div class="ball ball-1"></div>
+            <div class="ball ball-2"></div>
+            <div class="ball ball-3"></div>
+        </div>
+        <p class="footer__title">Siddharth</p>
+        <div class="footer__social">
+            <a href="https://www.linkedin.com/in/siddharth-bhadu-71a483193" class="footer__icon" target="_blank" rel="noopener noreferrer"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://github.com/sidhu1512" class="footer__icon" target="_blank" rel="noopener noreferrer"><i class='bx bxl-github'></i></a>
+        </div>
+        <p class="footer__copy">&#169; 2025. All rights reserved</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT LIBRARIES -->
+    <!-- EmailJS for contact form -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({ publicKey: "zqbDmgfDQH5ZGBbgy" });
+        })();
+    </script>
+
+    <!-- ScrollReveal for basic scroll animations -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- MAIN JAVASCRIPT FILE -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- ONEKO PUPPY SCRIPT -->
+    <script src="assets/js/oneko.js" data-cat="assets/img/oneko.gif"></script>
+
+</body>
+</html>
