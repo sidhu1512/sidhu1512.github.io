@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddharth Bhadu — Software Engineer</title>
+    <meta name="description" content="Software Engineer crafting scalable backend systems, exploring low-level computing, and building beautiful digital experiences.">
+    <meta property="og:title" content="Siddharth Bhadu — Software Engineer">
+    <meta property="og:description" content="Software Engineer crafting scalable backend systems and exploring low-level computing.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- ===== LOADER ===== -->
+    <div class="loader" id="loader">
+        <div class="loader__inner">
+            <span class="loader__count" id="loader-count">0</span>
+            <div class="loader__bar">
+                <div class="loader__progress" id="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CURSOR ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo">Siddharth<span>.</span></a>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="#gallery" class="nav__link" data-text="Work">Work</a></li>
+                    <li><a href="#about" class="nav__link" data-text="About">About</a></li>
+                    <li><a href="#experience" class="nav__link" data-text="Experience">Experience</a></li>
+                    <li><a href="#contact" class="nav__link" data-text="Contact">Contact</a></li>
+                </ul>
+                <div class="nav__footer">
+                    <a href="../assets/file/sidcv.pdf" target="_blank" class="nav__resume">Resume &#8599;</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero__content">
+            <div class="hero__eyebrow">
+                <span class="hero__line"></span>
+                <span class="hero__label">Software Engineer</span>
+            </div>
+            <h1 class="hero__title">
+                <span class="hero__title-line"><span class="hero__title-word">Crafting</span></span>
+                <span class="hero__title-line"><span class="hero__title-word"><em>Digital</em></span></span>
+                <span class="hero__title-line"><span class="hero__title-word">Experiences</span></span>
+            </h1>
+            <div class="hero__footer">
+                <p class="hero__subtitle">Backend systems &#183; Low-level computing &#183; Creative engineering</p>
+                <a href="#gallery" class="hero__scroll">
+                    <span>Scroll to explore</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY / WORK ===== -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Selected Work</span>
+                <h2 class="section-title">Projects &amp; <em>Explorations</em></h2>
+            </div>
+            <div class="gallery__grid">
+                <a href="https://github.com/sidhu1512/chip-8" class="gallery__item gallery__item--wide" target="_blank" rel="noopener noreferrer">
+                    <div class="gallery__img-wrap">
+                        <img src="../assets/img/work6.jpg" alt="CHIP-8 Emulator" class="gallery__img">
+                    </div>
+                    <div class="gallery__info">
+                        <span class="gallery__num">01</span>
+                        <h3 class="gallery__name">CHIP-8 Emulator</h3>
+                        <p class="gallery__cat">Java &#8212; 35-opcode virtual machine with CPU emulation &amp; low-level graphics rendering</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/ollama-chatbot" class="gallery__item" target="_blank" rel="noopener noreferrer">
+                    <div class="gallery__img-wrap">
+                        <img src="../assets/img/work3.jpg" alt="Local AI Chatbot" class="gallery__img">
+                    </div>
+                    <div class="gallery__info">
+                        <span class="gallery__num">02</span>
+                        <h3 class="gallery__name">Local AI Chatbot</h3>
+                        <p class="gallery__cat">Spring Boot / WebSockets &#8212; Private chatbot powered by Ollama LLM</p>
+                    </div>
+                </a>
+                <a href="https://sidhu1512.github.io/SharePaste/" class="gallery__item" target="_blank" rel="noopener noreferrer">
+                    <div class="gallery__img-wrap">
+                        <img src="../assets/img/work7.jpg" alt="SharePaste" class="gallery__img">
+                    </div>
+                    <div class="gallery__info">
+                        <span class="gallery__num">03</span>
+                        <h3 class="gallery__name">SharePaste</h3>
+                        <p class="gallery__cat">JavaScript / WASM &#8212; Serverless paste with Zstandard compression</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/recipe-assistant" class="gallery__item gallery__item--wide" target="_blank" rel="noopener noreferrer">
+                    <div class="gallery__img-wrap">
+                        <img src="../assets/img/work2.jpg" alt="AI Recipe Assistant" class="gallery__img">
+                    </div>
+                    <div class="gallery__info">
+                        <span class="gallery__num">04</span>
+                        <h3 class="gallery__name">AI Recipe Assistant</h3>
+                        <p class="gallery__cat">Spring Boot / Grok API &#8212; Generative AI-powered recipe creation</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/eshopping-zone-case-study" class="gallery__item" target="_blank" rel="noopener noreferrer">
+                    <div class="gallery__img-wrap">
+                        <img src="../assets/img/work4.jpg" alt="E-Shopping Zone" class="gallery__img">
+                    </div>
+                    <div class="gallery__info">
+                        <span class="gallery__num">05</span>
+                        <h3 class="gallery__name">E-Shopping Zone</h3>
+                        <p class="gallery__cat">Java / Microservices &#8212; Full e-commerce with distributed architecture</p>
+                    </div>
+                </a>
+                <a href="https://github.com/sidhu1512/PocketBench" class="gallery__item" target="_blank" rel="noopener noreferrer">
+                    <div class="gallery__img-wrap">
+                        <img src="../assets/img/work5.jpg" alt="PocketBench" class="gallery__img">
+                    </div>
+                    <div class="gallery__info">
+                        <span class="gallery__num">06</span>
+                        <h3 class="gallery__name">PocketBench</h3>
+                        <p class="gallery__cat">Java / AI &#8212; Local LLM benchmarking with automated testing</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PHOTO BREAK ===== -->
+    <section class="photo-break">
+        <div class="photo-break__img" style="background-image: url('../assets/img/DSC04813.JPG')"></div>
+        <div class="photo-break__overlay"></div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About</span>
+                <h2 class="section-title">A bit about <em>myself</em></h2>
+            </div>
+            <div class="about__grid">
+                <div class="about__image">
+                    <img src="../assets/img/DSC04816.JPG" alt="Siddharth Bhadu">
+                </div>
+                <div class="about__content">
+                    <p class="about__text about__text--lead">
+                        With 3+ years at companies like Capgemini and Oqulto Technologies, I specialize in Java and the Spring ecosystem.
+                    </p>
+                    <p class="about__text">
+                        I've scaled data exports to 1M+ rows, accelerated data retrieval by 25%, and automated 6+ hour manual workflows with Spring Batch. Beyond backend development, I'm passionate about systems programming, AI integration, and building tools that eliminate developer friction.
+                    </p>
+                    <div class="about__stats">
+                        <div class="about__stat">
+                            <span class="about__stat-num" data-count="3">0</span><span class="about__stat-plus">+</span>
+                            <span class="about__stat-label">Years Experience</span>
+                        </div>
+                        <div class="about__stat">
+                            <span class="about__stat-num" data-count="18">0</span><span class="about__stat-plus">+</span>
+                            <span class="about__stat-label">GitHub Repos</span>
+                        </div>
+                        <div class="about__stat">
+                            <span class="about__stat-num" data-count="7">0</span><span class="about__stat-plus">+</span>
+                            <span class="about__stat-label">Key Projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="skills">
+        <div class="skills__track">
+            <div class="skills__list">
+                <span>Java</span><span>Spring Boot</span><span>Hibernate</span><span>REST APIs</span>
+                <span>Microservices</span><span>AWS</span><span>MySQL</span><span>PostgreSQL</span>
+                <span>Docker</span><span>Git</span><span>Spring Security</span><span>JavaScript</span>
+                <span>Linux</span><span>Postman</span><span>Spring Batch</span><span>Maven</span>
+            </div>
+            <div class="skills__list" aria-hidden="true">
+                <span>Java</span><span>Spring Boot</span><span>Hibernate</span><span>REST APIs</span>
+                <span>Microservices</span><span>AWS</span><span>MySQL</span><span>PostgreSQL</span>
+                <span>Docker</span><span>Git</span><span>Spring Security</span><span>JavaScript</span>
+                <span>Linux</span><span>Postman</span><span>Spring Batch</span><span>Maven</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Experience</span>
+                <h2 class="section-title">Where I've <em>worked</em></h2>
+            </div>
+            <div class="experience__timeline">
+                <div class="experience__item">
+                    <div class="experience__dot"></div>
+                    <div class="experience__date">2026 &#8212; Present</div>
+                    <div class="experience__card">
+                        <h3>Software Engineer</h3>
+                        <span class="experience__company">Oqulto Technologies</span>
+                        <p>Built secure, scalable RESTful APIs and engineered daily ETL pipelines with Spring Batch, automating 6+ hour manual workflows. Accelerated data retrieval by 25% with pre-fetch caching and modernized legacy JSP interfaces, improving response times by 30%.</p>
+                        <div class="experience__tags">
+                            <span>Java</span><span>Spring Boot</span><span>Spring Batch</span><span>REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience__item">
+                    <div class="experience__dot"></div>
+                    <div class="experience__date">2023 &#8212; 2026</div>
+                    <div class="experience__card">
+                        <h3>Software Engineer</h3>
+                        <span class="experience__company">Capgemini</span>
+                        <p>Scaled data exports from 65K to 1M+ rows using Spring Batch. Improved API response times by 20% via SQL optimizations. Built a self-service PDF template tool with iText, reducing developer intervention by 25%.</p>
+                        <div class="experience__tags">
+                            <span>Java</span><span>Spring Boot</span><span>MySQL</span><span>iText</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience__item">
+                    <div class="experience__dot"></div>
+                    <div class="experience__date">Mar &#8212; Jun 2023</div>
+                    <div class="experience__card">
+                        <h3>Software Engineer Intern</h3>
+                        <span class="experience__company">Capgemini</span>
+                        <p>Contributed to a monolithic-to-microservice migration, cutting deployment times by 20%. Integrated a custom security layer into Spring Batch pipelines to enforce data compliance.</p>
+                        <div class="experience__tags">
+                            <span>Microservices</span><span>Spring Security</span><span>Spring Batch</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section class="education" id="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Education</span>
+                <h2 class="section-title">Academic <em>background</em></h2>
+            </div>
+            <div class="education__card">
+                <div class="education__degree">
+                    <h3>Bachelor of Technology</h3>
+                    <span>Computer Science &amp; Engineering</span>
+                </div>
+                <div class="education__meta">
+                    <p class="education__school">Lovely Professional University, Punjab, India</p>
+                    <span class="education__year">2019 &#8212; 2023</span>
+                </div>
+                <div class="experience__tags">
+                    <span>Data Structures</span><span>Algorithms</span><span>OOP</span><span>DBMS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PHOTO BREAK 2 ===== -->
+    <section class="photo-break">
+        <div class="photo-break__img" style="background-image: url('../assets/img/DSC04830.JPG')"></div>
+        <div class="photo-break__overlay"></div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contact</span>
+                <h2 class="section-title">Let's <em>connect</em></h2>
+            </div>
+            <div class="contact__grid">
+                <div class="contact__info">
+                    <p class="contact__text">Have a project in mind, or just want to say hello? I'd love to hear from you.</p>
+                    <div class="contact__links">
+                        <a href="mailto:siddharthbhadu.work@gmail.com" class="contact__link">
+                            <i class='bx bx-envelope'></i>
+                            <span>siddharthbhadu.work@gmail.com</span>
+                        </a>
+                        <a href="tel:+917240713544" class="contact__link">
+                            <i class='bx bx-phone'></i>
+                            <span>+91 7240713544</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/siddharth-bhadu-71a483193" target="_blank" class="contact__link">
+                            <i class='bx bxl-linkedin'></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/sidhu1512" target="_blank" class="contact__link">
+                            <i class='bx bxl-github'></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact__form">
+                    <input type="hidden" name="title" value="Portfolio Inquiry">
+                    <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+                        <input type="text" name="website" id="c-website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="form__field">
+                        <label for="c-name">Name</label>
+                        <input type="text" name="name" id="c-name" required>
+                    </div>
+                    <div class="form__field">
+                        <label for="c-email">Email</label>
+                        <input type="email" name="email" id="c-email" required>
+                    </div>
+                    <div class="form__field">
+                        <label for="c-message">Message</label>
+                        <textarea name="message" id="c-message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="form__submit" id="contact-submit">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <p class="form__status" id="form-status"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <span class="footer__logo">Siddharth<span>.</span></span>
+                <div class="footer__links">
+                    <a href="https://github.com/sidhu1512" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/siddharth-bhadu-71a483193" target="_blank">LinkedIn</a>
+                    <a href="mailto:siddharthbhadu.work@gmail.com">Email</a>
+                </div>
+                <p class="footer__copy">&#169; 2026 Siddharth Bhadu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Version Switcher -->
+    <a href="../" class="version-switch" id="version-switch" title="Switch to Classic Version">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>V1</span>
+    </a>
+    <style>
+        .version-switch {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 90;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #0c0c0c;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-radius: 100px;
+            text-decoration: none;
+            cursor: none;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(196, 168, 124, 0.3);
+        }
+        .version-switch:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 32px rgba(196, 168, 124, 0.45);
+        }
+    </style>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>
