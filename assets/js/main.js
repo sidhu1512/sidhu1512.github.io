@@ -1,291 +1,427 @@
 /*================================================================
-  Siddharth Bhadu - Portfolio JavaScript
-  ----------------------------------------------------------------
-  TABLE OF CONTENTS
-  ----------------------------------------------------------------
-  1.  MENU & NAVIGATION
-      - Mobile Menu Toggle
-      - Close Menu on Link Click
-      - Active Link on Scroll
-  2.  EMAILJS CONTACT FORM
-  3.  SCROLL REVEAL ANIMATION (Legacy)
-  4.  PAGE LOAD SCRIPTS (DOMContentLoaded)
-      - GSAP Animations
-      - Typing Animation (About Section)
-      - Dual Cursor Logic
+  SIDDHARTH BHADU — EDITORIAL PORTFOLIO JS
+  ================================================================
+  Features:
+  - Smooth page loader
+  - Custom cursor with hover effects
+  - GSAP scroll-triggered reveal animations
+  - Hero text line-by-line entrance
+  - Work item hover preview follows mouse
+  - Navigation scroll effects + mobile menu
+  - Marquee ticker
+  - Contact form (EmailJS)
 ================================================================*/
 
-/*==================================================
-  1. MENU & NAVIGATION
-==================================================*/
-
-/*----- Mobile Menu Toggle -----*/
-const showMenu = (toggleId, navId) => {
-    const toggle = document.getElementById(toggleId);
-    const nav = document.getElementById(navId);
-
-    if (toggle && nav) {
-        toggle.addEventListener('click', () => {
-            nav.classList.toggle('show');
-        });
-    }
-};
-showMenu('nav-toggle', 'nav-menu');
-
-/*----- Close Menu on Link Click -----*/
-const navLink = document.querySelectorAll('.nav__link');
-
-function linkAction() {
-    const navMenu = document.getElementById('nav-menu');
-    navMenu.classList.remove('show');
-}
-navLink.forEach(n => n.addEventListener('click', linkAction));
-
-/*----- Active Link on Scroll -----*/
-const sections = document.querySelectorAll('section[id]');
-
-const scrollActive = () => {
-    const scrollDown = window.scrollY;
-
-    sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
-        const sectionTop = current.offsetTop - 58;
-        const sectionId = current.getAttribute('id');
-        const sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
-
-        if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
-            sectionsClass.classList.add('active-link');
-        } else {
-            sectionsClass.classList.remove('active-link');
-        }
-    });
-};
-window.addEventListener('scroll', scrollActive);
-
-
-/*==================================================
-  2. EMAILJS CONTACT FORM
-==================================================*/
-const contactForm = document.getElementById("contact-form");
-if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        emailjs.sendForm("service_6gugyzb", "template_pytjitl", this)
-            .then(() => {
-                // Success message can be added here
-            }, (error) => {
-                // Error handling can be added here
-            });
-
-        this.reset();
-    });
-}
-
-
-/*==================================================
-  3. SCROLL REVEAL ANIMATION (Legacy)
-==================================================*/
-const sr = ScrollReveal({
-    origin: 'top',
-    distance: '60px',
-    duration: 2000,
-    delay: 200,
-});
-
-// Note: .home__data is now animated by GSAP
-sr.reveal('.about__img, .skills__subtitle, .skills__text', {});
-sr.reveal('.skills__img', { delay: 400 });
-sr.reveal('.home__social-icon', { interval: 200 });
-sr.reveal('.skills__data, .work__img, .contact__input', { interval: 200 });
-
-
-/*==================================================
-  4. PAGE LOAD SCRIPTS
-  - Scripts that require the DOM to be ready.
-==================================================*/
 document.addEventListener('DOMContentLoaded', () => {
 
-    /*---------- GSAP Animations ----------*/
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Animate the home page title on load
-    gsap.from(".home__title-line", {
-        duration: 0.8,
-        y: 100,
-        opacity: 0,
-        stagger: 0.2,
-        ease: "power3.out"
+    /*==================================================
+      1. PAGE LOADER
+    ==================================================*/
+    const loader = document.getElementById('loader');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loader.classList.add('done');
+            document.body.style.overflow = 'auto';
+            initAnimations();
+        }, 2400);
     });
 
-    // Animate the resume button on load
-    gsap.set(".home .button", { opacity: 0, y: 50 });
-    gsap.to(".home .button", {
-        duration: 1,
-        opacity: 1,
-        y: 0,
-        delay: 0.8,
-        ease: "power3.out"
+    // Prevent scroll during loader
+    document.body.style.overflow = 'hidden';
+
+
+    /*==================================================
+      2. CUSTOM CURSOR
+    ==================================================*/
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    let cursorX = 0, cursorY = 0;
+    let followerX = 0, followerY = 0;
+
+    if (cursor && follower && window.matchMedia('(pointer: fine)').matches) {
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+        });
+
+        function animateFollower() {
+            followerX += (cursorX - followerX) * 0.12;
+            followerY += (cursorY - followerY) * 0.12;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        // Hover effect on interactive elements
+        const hoverElements = document.querySelectorAll('a, button, .work__item, .tech-item, .services__item');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => follower.classList.add('hover'));
+            el.addEventListener('mouseleave', () => follower.classList.remove('hover'));
+        });
+    }
+
+
+    /*==================================================
+      3. NAVIGATION
+    ==================================================*/
+    const header = document.getElementById('header');
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    // Scroll effect
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     });
 
-    // Animate the contact form button on scroll
-    gsap.from(".contact__button", {
-        scrollTrigger: {
-            trigger: ".contact__form",
-            start: "top 80%",
-            toggleActions: "play none none none"
-        },
-        duration: 1,
-        opacity: 0,
-        y: 50,
-        ease: "power3.out"
-    });
+    // Mobile menu toggle
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('show');
+            document.body.style.overflow = navMenu.classList.contains('show') ? 'hidden' : 'auto';
+        });
 
-
-    /*---------- Typing Animation (About Section) ----------*/
-    const subtitleElement = document.getElementById('about-subtitle');
-    const textElement = document.getElementById('about-text');
-
-    if (subtitleElement && textElement) {
-        const subtitleText = "I'am Siddharth Bhadu";
-        const aboutText = "A results-oriented Software Engineer specializing in building and optimizing scalable backend systems with Java and the Spring ecosystem. I enjoy turning complex problems into high-performance applications.";
-        const pauseDuration = 1000;
-
-        const typeWriter = (element, text, speed, callback) => {
-            let i = 0;
-            element.innerHTML = "";
-            element.classList.remove('typing-done');
-            const typingInterval = setInterval(() => {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typingInterval);
-                    element.classList.add('typing-done');
-                    if (callback) callback();
-                }
-            }, speed);
-        };
-
-        const deleteWriter = (element, speed, callback) => {
-            let text = element.innerHTML;
-            let i = text.length;
-            element.classList.remove('typing-done');
-            const deletingInterval = setInterval(() => {
-                if (i > 0) {
-                    element.innerHTML = text.substring(0, i - 1);
-                    i--;
-                } else {
-                    clearInterval(deletingInterval);
-                    if (callback) callback();
-                }
-            }, speed);
-        };
-
-        const startTypingLoop = () => {
-            typeWriter(subtitleElement, subtitleText, 100, () => {
-                typeWriter(textElement, aboutText, 50, () => {
-                    setTimeout(() => {
-                        deleteWriter(textElement, 30, () => {
-                            deleteWriter(subtitleElement, 75, startTypingLoop);
-                        });
-                    }, pauseDuration);
-                });
+        // Close menu on link click
+        document.querySelectorAll('.nav__link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('show');
+                document.body.style.overflow = 'auto';
             });
-        };
+        });
+    }
 
-        let animationHasStarted = false;
+
+    /*==================================================
+      4. WORK ITEM HOVER PREVIEW (Follow Mouse)
+    ==================================================*/
+    const workItems = document.querySelectorAll('.work__item');
+
+    workItems.forEach(item => {
+        const preview = item.querySelector('.work__item-preview');
+        if (!preview) return;
+
+        item.addEventListener('mousemove', (e) => {
+            const rect = item.getBoundingClientRect();
+            const x = e.clientX;
+            const y = e.clientY;
+            // Position the preview image near the cursor
+            preview.style.left = (x + 20) + 'px';
+            preview.style.top = (y - 110) + 'px';
+        });
+    });
+
+
+    /*==================================================
+      5. SCROLL REVEAL ANIMATIONS
+    ==================================================*/
+    function initAnimations() {
+        const revealElements = document.querySelectorAll('.reveal');
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !animationHasStarted) {
-                    animationHasStarted = true;
-                    startTypingLoop();
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 80);
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
-
-        observer.observe(document.getElementById('about'));
-    }
-
-
-    /*---------- Dual Cursor Logic ----------*/
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-    const hoverables = document.querySelectorAll('a, .button');
-
-    if (cursorDot && cursorOutline) {
-        const defaultDotColor = 'hsl(224, 89%, 60%)';
-        const defaultOutlineBorderColor = 'hsla(224, 89%, 60%, 0.5)';
-
-        window.addEventListener('mousemove', e => {
-            cursorDot.style.top = `${e.clientY}px`;
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorOutline.style.top = `${e.clientY}px`;
-            cursorOutline.style.left = `${e.clientX}px`;
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
         });
 
-        hoverables.forEach(el => {
-            el.addEventListener('mouseover', () => {
-                const hoveredColor = window.getComputedStyle(el).color;
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorOutline.style.borderColor = hoveredColor;
-                cursorDot.style.backgroundColor = hoveredColor;
+        revealElements.forEach(el => observer.observe(el));
+
+
+        /*==================================================
+          6. GSAP ANIMATIONS
+        ==================================================*/
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero title lines — staggered entrance
+            gsap.from('.hero__title-inner', {
+                y: '100%',
+                duration: 0.9,
+                stagger: 0.12,
+                ease: 'power4.out',
+                delay: 2.6
             });
 
-            el.addEventListener('mouseout', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.borderColor = defaultOutlineBorderColor;
-                cursorDot.style.backgroundColor = defaultDotColor;
-            });
-        });
-    }
-
-/*---------- FOOTER BOUNCING BALL ANIMATION ----------*/
-    const container = document.getElementById('footer-animation-container');
-    const ballElements = document.querySelectorAll('.ball');
-
-    if (container && ballElements.length > 0) {
-        const balls = []; // Array to store data for each ball
-
-        // Initialize each ball with a random position and velocity
-        ballElements.forEach(el => {
-            balls.push({
-                element: el,
-                posX: Math.random() * container.offsetWidth,
-                posY: Math.random() * container.offsetHeight,
-                velX: (Math.random() - 0.5) * 4, // Random speed between -2 and 2
-                velY: (Math.random() - 0.5) * 4
-            });
-        });
-
-        function animate() {
-            const containerRect = container.getBoundingClientRect();
-
-            // Loop through each ball and update its state
-            balls.forEach(ball => {
-                // Update position
-                ball.posX += ball.velX;
-                ball.posY += ball.velY;
-
-                // Collision detection with container walls
-                if (ball.posX + ball.element.offsetWidth > containerRect.width || ball.posX < 0) {
-                    ball.velX = -ball.velX;
-                }
-                if (ball.posY + ball.element.offsetHeight > containerRect.height || ball.posY < 0) {
-                    ball.velY = -ball.velY;
-                }
-
-                // Apply new position
-                ball.element.style.left = ball.posX + 'px';
-                ball.element.style.top = ball.posY + 'px';
+            // Hero tag
+            gsap.from('.hero__tag', {
+                opacity: 0,
+                x: -30,
+                duration: 0.6,
+                ease: 'power3.out',
+                delay: 3.2
             });
 
-            // Keep the animation running
-            requestAnimationFrame(animate);
+            // Hero bottom
+            gsap.from('.hero__bottom', {
+                opacity: 0,
+                y: 30,
+                duration: 0.6,
+                ease: 'power3.out',
+                delay: 3.4
+            });
+
+            // Marquee
+            gsap.from('.hero__marquee', {
+                opacity: 0,
+                duration: 0.6,
+                delay: 3.6
+            });
+
+            // Work items stagger on scroll
+            gsap.utils.toArray('.work__item').forEach((item, i) => {
+                gsap.fromTo(item, 
+                    { opacity: 0, y: 30 },
+                    {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 90%',
+                        },
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.7,
+                        delay: i * 0.08,
+                        ease: 'power3.out'
+                    }
+                );
+            });
+
+            // Stats counter
+            gsap.utils.toArray('.about__stat-num').forEach(stat => {
+                gsap.from(stat, {
+                    scrollTrigger: {
+                        trigger: stat,
+                        start: 'top 90%',
+                    },
+                    textContent: 0,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    snap: { textContent: 1 },
+                    stagger: 0.2
+                });
+            });
+
+            // Services items
+            gsap.utils.toArray('.services__item').forEach((item, i) => {
+                gsap.fromTo(item,
+                    { opacity: 0, y: 30 },
+                    {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 88%',
+                        },
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        delay: i * 0.1,
+                        ease: 'power3.out'
+                    }
+                );
+            });
+
+            // Experience
+            gsap.utils.toArray('.experience__item').forEach(item => {
+                gsap.fromTo(item,
+                    { opacity: 0, y: 30 },
+                    {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 88%',
+                        },
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        ease: 'power3.out'
+                    }
+                );
+            });
+
+            // Tech items
+            gsap.utils.toArray('.tech-item').forEach((item, i) => {
+                gsap.fromTo(item,
+                    { opacity: 0, y: 20 },
+                    {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 92%',
+                        },
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        delay: i * 0.05,
+                        ease: 'power3.out'
+                    }
+                );
+            });
+
+            // Contact
+            gsap.utils.toArray('.contact__link').forEach((item, i) => {
+                gsap.fromTo(item,
+                    { opacity: 0, x: -20 },
+                    {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 92%',
+                        },
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.5,
+                        delay: i * 0.1,
+                        ease: 'power3.out'
+                    }
+                );
+            });
+
+
+            /*==================================================
+              9. PARALLAX PHOTO SECTIONS
+            ==================================================*/
+            // Background image parallax scroll
+            gsap.utils.toArray('.parallax-photo').forEach(section => {
+                const img = section.querySelector('.parallax-photo__img');
+                const speed = parseFloat(section.dataset.speed) || 0.5;
+
+                gsap.fromTo(img,
+                    { yPercent: -50 * speed },
+                    {
+                        yPercent: 50 * speed,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true
+                        }
+                    }
+                );
+            });
+
+            // Caption fade-in on scroll
+            gsap.utils.toArray('.parallax-photo__caption').forEach(caption => {
+                gsap.fromTo(caption,
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scrollTrigger: {
+                            trigger: caption,
+                            start: 'top 85%',
+                            end: 'top 55%',
+                            scrub: true
+                        }
+                    }
+                );
+            });
         }
-
-        // Start the animation
-        requestAnimationFrame(animate);
     }
+
+
+    /*==================================================
+      7. CONTACT FORM (EmailJS — secured)
+    ==================================================*/
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('contact-submit');
+
+    // Obfuscated config — not true encryption, but prevents
+    // casual scraping of keys from source code.
+    // Real protection: enable domain restriction in EmailJS dashboard
+    // (Settings → API Keys → restrict to sidhu1512.github.io)
+    const _c = {
+        p: atob('enFiRG1nZkRRSDVaR0JiZ3k='),
+        s: atob('c2VydmljZV83dWtjZHY2'),
+        t: atob('dGVtcGxhdGVfNHMyNXp5MQ==')
+    };
+
+    // Rate limiter: max 3 submissions per 10 minutes
+    const _submissions = [];
+    const RATE_LIMIT = 3;
+    const RATE_WINDOW = 10 * 60 * 1000; // 10 min
+
+    function isRateLimited() {
+        const now = Date.now();
+        // Remove old entries
+        while (_submissions.length && now - _submissions[0] > RATE_WINDOW) {
+            _submissions.shift();
+        }
+        return _submissions.length >= RATE_LIMIT;
+    }
+
+    if (contactForm && typeof emailjs !== 'undefined') {
+        // Init EmailJS with decoded key
+        emailjs.init({ publicKey: _c.p });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Honeypot check — if filled, it's a bot
+            const honeypot = contactForm.querySelector('#c-website');
+            if (honeypot && honeypot.value) {
+                formStatus.className = 'form__status success';
+                formStatus.textContent = '✓ Message sent successfully!';
+                contactForm.reset();
+                return;
+            }
+
+            // Rate limit check
+            if (isRateLimited()) {
+                formStatus.className = 'form__status error';
+                formStatus.textContent = '✗ Too many messages. Please try again later.';
+                return;
+            }
+
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            submitBtn.disabled = true;
+
+            emailjs.sendForm(_c.s, _c.t, contactForm)
+                .then(() => {
+                    _submissions.push(Date.now());
+                    formStatus.className = 'form__status success';
+                    formStatus.textContent = '✓ Message sent successfully!';
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    setTimeout(() => formStatus.textContent = '', 5000);
+                }, (error) => {
+                    formStatus.className = 'form__status error';
+                    formStatus.textContent = '✗ Something went wrong. Please try again.';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
+    }
+
+
+    /*==================================================
+      8. SMOOTH SCROLL FOR ANCHOR LINKS
+    ==================================================*/
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 80;
+                window.scrollTo({
+                    top: target.offsetTop - navHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
 });
